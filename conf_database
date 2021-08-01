@@ -1,0 +1,11 @@
+#!/bin/bash
+
+newUser='qa'
+newDbPassword='16Tay9tnffOEIHXy8uU'
+newDb='robosou_database_qa'
+#host=localhost
+host='%'
+commands="CREATE DATABASE \`${newDb}\`;CREATE USER '${newUser}'@'${host}' IDENTIFIED BY '${newDbPassword}';GRANT USAGE ON *.* TO '${newUser}'@'${host}' IDENTIFIED BY '${newDbPassword}';GRANT ALL privileges ON \`${newDb}\`.*
+TO '${newUser}'@'${host}';FLUSH PRIVILEGES;"
+
+echo "${commands}" | mysql -u root -p
