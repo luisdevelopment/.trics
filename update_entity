@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#mycli -h 31.220.61.68 -u qa -p 16Tay9tnffOEIHXy8uU
+host="31.220.61.68"
+db="robosou_database_qa"
+passwd="16Tay9tnffOEIHXy8uU"
+uid="qa"
+
+scaffold="Server=$host;DataBase=$db;Uid=$uid;Pwd=$passwd"
+
+(
+	cd RoboSou.Data
+	dotnet ef dbcontext scaffold "$scaffold" Pomelo.EntityFrameworkCore.MySql -o Models -f -c RoboSouDbContext  -n RoboSou.Data.Models
+)
+
