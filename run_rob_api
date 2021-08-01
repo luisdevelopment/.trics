@@ -1,0 +1,4 @@
+#!/bin/bash
+
+clear
+dotnet watch run --project /home/n0101/projetos/api_robo_sou/RoboSou.Application/
