@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#interface_generator interface namespace model
+
+INTERFACE=$1
+INTERFACE_FILE="$INTERFACE.cs"
+NAMESPACE=$2
+MODEL=$3
+
+if [ -f "$INTERFACE_FILE" ]; then
+	rm -rf $INTERFACE_FILE
+fi
+
+touch $INTERFACE_FILE
+
+
+
+FileWriter()
+{
+	MESSAGE=$1
+	FILE=$2
+	echo "$MESSAGE" >> $FILE
+}
+
+FileWriter "namespace $NAMESPACE" $INTERFACE_FILE
+FileWriter "{" $INTERFACE_FILE
+FileWriter "	public interface $INTERFACE" $INTERFACE_FILE
+FileWriter "	{" $INTERFACE_FILE
+FileWriter "		Task<List<$MODEL>> GetList$MODEL();" $INTERFACE_FILE
+FileWriter "		Task<$MODEL> Get$MODEL(int id);" $INTERFACE_FILE
+FileWriter "		Task<$MODEL> Crerate$MODEL($MODEL ${MODEL,,});" $INTERFACE_FILE
+#FileWriter Task<List<$MODEL>> GetList$MODEL() $INTERFACE_FILE
+#FileWriter Task<List<$MODEL>> GetList$MODEL() $INTERFACE_FILE
+#FileWriter Task<List<$MODEL>> GetList$MODEL() $INTERFACE_FILE
+FileWriter "	}" $INTERFACE_FILE
+FileWriter "}" $INTERFACE_FILE
+
+
+

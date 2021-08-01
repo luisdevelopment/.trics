@@ -1,0 +1,27 @@
+#!/bin/bash
+#class_generator classname namespace prop0 pro1 pro2 prop3 ... propn
+
+
+CLASS=$1
+CLASS_FILE="$CLASS.cs"
+NAMESPACE=$2
+shift 2
+PROP_NAMES=$@
+
+
+#rm -r $CLASS_FILE
+touch $CLASS_FILE
+
+num=1
+
+echo "namespace $NAMESPACE" >> $CLASS_FILE
+echo "{"  >> $CLASS_FILE
+echo "	public class $CLASS"  >> $CLASS_FILE
+echo "	{"  >> $CLASS_FILE
+for i in $PROP_NAMES; do
+	echo "		public $i { get; set; }" >> $CLASS_FILE
+	((num++))
+done;
+
+echo "	}" >> $CLASS_FILE
+echo "}" >> $CLASS_FILE

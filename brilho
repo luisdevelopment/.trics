@@ -1,0 +1,5 @@
+#!/bin/bash
+
+BRILHO=$1
+
+echo "$BRILHO" > "/sys/class/backlight/intel_backlight/brightness"

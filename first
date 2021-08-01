@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [ "a" == "a" ]; then
+	echo "Deus seja louvado"
+fi;

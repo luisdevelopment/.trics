@@ -1,0 +1,51 @@
+#!/bin/bash
+
+#interface_implementation interface_file
+
+FileWriter()
+{
+	MESSAGE=$1
+	FILE=$2
+	echo "$MESSAGE" >> $FILE
+}
+
+WordReplace()
+{
+	STRING=$1
+	FIND=$2
+	REPLACE=$3
+	RESULT=${STRING//$FIND/$REPLACE}
+
+	echo  $RESULT
+}
+
+WordReplace2()
+{
+	SOURCE_FILE=$1
+	FIND=$2
+	REPLACE=$3
+	echo $SOURCE_FILE
+	echo $FIND
+	echo $REPLACE
+	sed -i -e "s/$FIND/$REPLACE/g" $SOURCE_FILE
+}
+
+
+INTERFACE_FILE=$1
+
+if [ ! -f "$INTERFACE_FILE" ]; then
+	echo "interface não encontra ou inexistente"
+	exit
+fi
+
+CLASS_FILE=$(WordReplace $INTERFACE_FILE "I" "")
+
+if [ -f "$CLASS_FILE" ]; then
+	rm -rf $CLASS_FILE
+fi
+
+cp $INTERFACE_FILE $CLASS_FILE
+
+WordReplace2 "$CLASS_FILE" ";" "\n\t\t{\n\t\t\treturn null;\n\t\t}\n"
+WordReplace2 "$CLASS_FILE" "interface I" "class "
+WordReplace2 "$CLASS_FILE" "Task" "public async Task"

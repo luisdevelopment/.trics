@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ "a" == "a" ]; then
+	echo "Deus seja louvado"
+fi;
+
+#dialog --msgbox "teste" 0 0
+
+while true
+do
+# clear
+ CARGA=$(cat "/sys/class/power_supply/BAT0/capacity")
+ #echo $CARGA
+ if [ "$CARGA" == 15  ]; then
+	dialog --msgbox "Notebook prestes a descarregar, conect o carregador" 0 0
+ fi;
+ sleep 5
+done
