@@ -1,0 +1,16 @@
+[abc] a, b or c
+[^abc] 
+
+\d [0-9]
+\D ![0-9]
+
+\s white space
+\S not white space
+
+\w word [0-9][a-b][A-B]_
+\W not word caracter ~^^:;
+
+^example start with example
+example$ end with example
+
+^.con.*swp$
