@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+sudo dnf install -y samba
+sudo systemctl enable smb nmb
+sudo firewall-cmd --add-service=samba --permanent
+sudo firewall-cmd --reload
+sudo setsebool -P samba_enable_home_dirs on
+sudo useradd -m sharefile
+sudo pdbedit -a sharefile
+sudo systemctl restart smb nmb
+#valid users = %S
+cat <<EOF | sudo tee -a /etc/samba/smb.conf
+[share]
+   comment = Share directory
+   path = /var/lib/share
+   read only = no
+   guest only = no
+   guest ok = no
+   share modes = yes
+EOF
+
+sudo mkdir /var/lib/share
+sudo chmod 0777 /var/lib/share
+sudo chcon -R -t samba_share_t /var/lib/share
