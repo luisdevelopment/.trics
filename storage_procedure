@@ -1,0 +1,6 @@
+#!/bin/bash
+
+raiz="/home/n0101/projetos/personal-scripts/sh/database/robosou_qa"
+
+php $raiz/copy_qa_to_local.php
+mysql -u root -p robosou_database_qa < $raiz/robosou_database_qa.sql
