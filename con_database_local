@@ -1,0 +1,3 @@
+#!/bin/bash
+
+mycli -u root -p Sql16180339887
