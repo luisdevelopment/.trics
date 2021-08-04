@@ -1,6 +1,7 @@
 #!/bin/bash
 #class_generator classname namespace prop0 pro1 pro2 prop3 ... propn
 
+echo "use: class_generator classname namespace prop0 ... propn"
 
 CLASS=$1
 CLASS_FILE="$CLASS.cs"
@@ -19,7 +20,7 @@ echo "{"  >> $CLASS_FILE
 echo "	public class $CLASS"  >> $CLASS_FILE
 echo "	{"  >> $CLASS_FILE
 for i in $PROP_NAMES; do
-	echo "		public $i { get; set; }" >> $CLASS_FILE
+	echo "		public string $i { get; set; }" >> $CLASS_FILE
 	((num++))
 done;
 
