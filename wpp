@@ -1,0 +1,8 @@
+#!/bin/bash
+
+MESSAGE=$1
+#FIND=${$SEARCH// /+}
+
+echo "pesquisando $MESSAGE"
+
+firefox "https://web.whatsapp.com/send?phone=5585992775171&text=$MESSAGE"
