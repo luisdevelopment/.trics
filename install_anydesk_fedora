@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "installing dependency"
+sudo dnf --releasever=32  install pangox-compat.x86_64
+
+echo "installing anydesk"
+sudo dnf localinstall anydesk_6.1.1-1_x86_64.rpm
